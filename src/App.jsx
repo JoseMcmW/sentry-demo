@@ -6,7 +6,6 @@ const App = () => {
   const [flashcards, setFlashcards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
 
-  // Cargar desde localStorage al iniciar
   useEffect(() => {
     const stored = localStorage.getItem('flashcards');
     if (stored) {
@@ -14,7 +13,6 @@ const App = () => {
     }
   }, []);
 
-  // Guardar en localStorage cada vez que cambian
   useEffect(() => {
     localStorage.setItem('flashcards', JSON.stringify(flashcards));
   }, [flashcards]);
