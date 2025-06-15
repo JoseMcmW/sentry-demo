@@ -9,8 +9,10 @@ export default defineConfig({
     react(),
     tailwindcss(),
     sentryVitePlugin({
-    org: "no-bim",
-    project: "sentry-demo"
+      org: "no-bim",
+      project: "sentry-demo",
+      include: "./dist",
+      urlPrefix: "~/",
     })
   ],
   build: {
