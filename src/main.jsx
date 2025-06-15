@@ -5,7 +5,7 @@ import './index.css'
 import App from './App.jsx'
 
 Sentry.init({
-  dsn: "https://dd3ccc5375c03291bdec6db1b3856309@o4509493397028864.ingest.us.sentry.io/4509499837382656",
+  dsn: import.meta.env.SENTRY_AUTH_TOKEN,
   // Setting this option to true will send default PII data to Sentry.
   // For example, automatic IP address collection on events
   sendDefaultPii: true,
