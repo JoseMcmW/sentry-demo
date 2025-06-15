@@ -41,7 +41,9 @@ const FlashcardForm = ({ card, onSave }) => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      throw new Error("Formulario inválido: faltan campos obligatorios.");
+
+      const camposFaltantes = Object.keys(validationErrors).join(', ');
+      throw new Error(`Formulario inválido: faltan los campos obligatorios: ${camposFaltantes}`);
     }
 
     onSave(form);
