@@ -1,12 +1,78 @@
-# React + Vite
+App de prueba con Sentry, React y Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una app de prueba mínima creada con React + Vite, integrada con Sentry para monitoreo de errores. Incluye configuración básica de ESLint y soporte para Hot Module Replacement (HMR).
 
-Currently, two official plugins are available:
+🔮 Tecnologías usadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Vite
 
-## Expanding the ESLint configuration
+React
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Sentry
+
+ESLint
+
+SWC o Babel (según configuración de plugin)
+
+🚀 Instalación
+
+npm install
+
+🤠 Scripts disponibles
+
+npm run dev       # Levanta el servidor de desarrollo con Vite
+npm run build     # Genera la versión de producción
+npm run lint      # Ejecuta ESLint
+
+⚙️ Integración con Sentry
+
+La app tiene Sentry configurado para capturar errores en producción.Asegúrate de tener un archivo .env con tu DSN de Sentry:
+
+VITE_SENTRY_DSN=https://tu-dsn@sentry.io/proyecto
+
+⚠️ Este archivo .env está incluido en el .gitignore para proteger datos sensibles.
+
+🛆 Instalación de Sentry
+
+npm install @sentry/react @sentry/tracing
+
+🧹 Configuración en el código
+
+En tu main.jsx o main.tsx, incluye:
+
+import * as Sentry from "@sentry/react";
+
+Sentry.init({
+  dsn: import.meta.env.VITE_SENTRY_DSN,
+  integrations: [new Sentry.BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
+
+🔧 ESLint
+
+Ya incluye reglas básicas para React.Si deseas agregar soporte para TypeScript, se recomienda integrar typescript-eslint para un chequeo de tipos más estricto.
+
+📁 Estructura recomendada
+
+src/
+├─ components/
+├─ pages/
+├─ App.jsx
+├─ main.jsx
+.env             ← No se sube al repo
+
+🛡️ Seguridad
+
+No subas archivos sensibles como .env.El archivo .gitignore ya tiene las reglas para evitar subirlos:
+
+.env
+.env.local
+.env.*.local
+
+🔒 Consideraciones adicionales
+
+El tracesSampleRate de Sentry está seteado al 100% (1.0) solo para pruebas. En producción se recomienda bajarlo.
+
+Puedes probar los reportes de errores forzando un throw new Error("Prueba Sentry") en cualquier componente.
+
+Revisa la documentación oficial de Sentry para integraciones más avanzadas: https://docs.sentry.io/platforms/javascript/guides/react/
